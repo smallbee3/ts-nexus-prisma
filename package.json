@@ -19,6 +19,7 @@
     "generate:prisma": "prisma generate",
     "migrate:save": "dotenv -e ./dotenv/prod.env -- prisma migrate save --experimental",
     "migrate:up": "dotenv -e ./dotenv/prod.env -- prisma migrate up --experimental",
+    "migrate:down": "dotenv -e ./dotenv/prod.env -- prisma migrate down 1 --experimental",
     "studio": "prisma studio --experimental"
   },
   "dependencies": {
