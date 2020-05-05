@@ -25,19 +25,16 @@
     "studio": "prisma studio --experimental"
   },
   "dependencies": {
-    "@nexus/schema": "^0.13.1",
-    "@prisma/client": "^2.0.0-beta.4",
-    "apollo-server": "^2.13.0",
     "bcryptjs": "^2.4.3",
     "graphql-iso-date": "^3.6.1",
     "graphql-shield": "^7.2.6",
     "graphql-subscriptions": "^1.1.0",
+    "graphql-upload": "^10.0.0",
     "jsonwebtoken": "^8.5.1",
-    "nexus": "^0.21.0",
-    "nexus-prisma": "^0.12.0"
+    "nexus": "next",
+    "nexus-plugin-prisma": "^0.7.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.0.0-beta.4",
     "@types/bcryptjs": "2.4.2",
     "@types/express": "^4.17.6",
     "@types/graphql-iso-date": "^3.3.3",
