@@ -20,6 +20,7 @@
     "noImplicitReturns":false,
     "noImplicitUseStrict":false,
     "outDir":"dist/",
+    "rootDir":".",
     "baseUrl":"src/",
     "listFiles":false,
     "skipLibCheck": true
