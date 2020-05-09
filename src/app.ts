@@ -1,14 +1,22 @@
-import express, { Express } from 'express';
+import { schema, use } from 'nexus';
+// import cors from 'cors';
+import { PrismaClient } from '@prisma/client'
+import { PubSub } from 'graphql-subscriptions';
+import { prisma as nexusPrisma } from 'nexus-plugin-prisma';
 
-import cors from 'cors';
+use(nexusPrisma());
 
-export const createApp = (): Express => {
-  const app = express();
+const prisma = new PrismaClient();
+const pubsub = new PubSub();
+const { JWT_SECRET } = process.env;
 
-  app.use(cors());
-  app.get('/', (req, res) => {
-    res.send('It works x 1');
-  });
+schema.addToContext((req) => {
+  return {
+    req,
+    prisma,
+    pubsub,
+    appSecret: JWT_SECRET,
+  };
+});
 
-  return app;
-};
+// server.express.use(cors());
