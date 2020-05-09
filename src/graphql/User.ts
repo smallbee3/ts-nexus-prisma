@@ -1,6 +1,6 @@
-import { objectType } from '@nexus/schema';
+import { schema } from 'nexus';
 
-export const Profile = objectType({
+schema.objectType({
   name: 'Profile',
   definition(t) {
     t.model.id();
@@ -10,7 +10,7 @@ export const Profile = objectType({
   },
 });
 
-export const User = objectType({
+schema.objectType({
   name: 'User',
   definition(t) {
     t.model.id();

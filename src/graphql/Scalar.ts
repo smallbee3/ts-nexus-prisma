@@ -1,14 +1,14 @@
 import { asNexusMethod, enumType } from '@nexus/schema';
-
 import { GraphQLDate } from 'graphql-iso-date';
 import { GraphQLUpload } from 'graphql-upload';
+import { schema } from 'nexus';
 
-export const AuthType = enumType({
+schema.enumType({
   name: 'AuthType',
   members: ['Email', 'Facebook', 'Google', 'Apple'],
 });
 
-export const Gender = enumType({
+schema.enumType({
   name: 'Gender',
   members: ['Male', 'Female'],
 });

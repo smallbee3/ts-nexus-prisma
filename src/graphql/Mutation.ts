@@ -1,10 +1,10 @@
 import { APP_SECRET, getUserId } from '../utils';
 import { compare, hash } from 'bcryptjs';
-import { inputObjectType, intArg, mutationType, stringArg } from '@nexus/schema';
+import { schema } from 'nexus';
 
 import { sign } from 'jsonwebtoken';
 
-export const InputType = inputObjectType({
+schema.inputObjectType({
   name: 'UserInput',
   definition(t) {
     t.string('email', {
@@ -15,14 +15,14 @@ export const InputType = inputObjectType({
     });
     t.string('name');
     t.string('nickname');
-    t.date('birthday');
+    t.string('birthday');
     t.string('gender');
     t.string('phone');
     t.string('statusMessage');
   },
 });
 
-export const Mutation = mutationType({
+schema.mutationType({
   definition(t) {
     t.field('signUp', {
       type: 'AuthPayload',
@@ -49,8 +49,8 @@ export const Mutation = mutationType({
     t.field('login', {
       type: 'AuthPayload',
       args: {
-        email: stringArg({ nullable: false }),
-        password: stringArg({ nullable: false }),
+        email: schema.stringArg({ nullable: false }),
+        password: schema.stringArg({ nullable: false }),
       },
       resolve: async (_parent, { email, password }, ctx) => {
         const user = await ctx.prisma.user.findOne({
@@ -75,8 +75,8 @@ export const Mutation = mutationType({
     t.field('createDraft', {
       type: 'Post',
       args: {
-        title: stringArg({ nullable: false }),
-        content: stringArg(),
+        title: schema.stringArg({ nullable: false }),
+        content: schema.stringArg(),
       },
       resolve: (parent, { title, content }, ctx) => {
         const userId = getUserId(ctx);
@@ -95,7 +95,7 @@ export const Mutation = mutationType({
     t.field('deletePost', {
       type: 'Post',
       nullable: true,
-      args: { id: intArg({ nullable: false }) },
+      args: { id: schema.intArg({ nullable: false }) },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.delete({
           where: {
@@ -108,7 +108,7 @@ export const Mutation = mutationType({
     t.field('publish', {
       type: 'Post',
       nullable: true,
-      args: { id: intArg() },
+      args: { id: schema.intArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.update({
           where: { id },

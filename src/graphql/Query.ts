@@ -1,8 +1,7 @@
-import { intArg, queryType, stringArg } from '@nexus/schema';
-
 import { getUserId } from '../utils';
+import { schema } from 'nexus';
 
-export const Query = queryType({
+schema.queryType({
   definition(t) {
     t.field('me', {
       type: 'User',
@@ -30,7 +29,7 @@ export const Query = queryType({
     t.list.field('filterPosts', {
       type: 'Post',
       args: {
-        searchString: stringArg({ nullable: true }),
+        searchString: schema.stringArg({ nullable: true }),
       },
       resolve: (parent, { searchString }, ctx) => {
         return ctx.prisma.post.findMany({
@@ -55,7 +54,7 @@ export const Query = queryType({
     t.field('post', {
       type: 'Post',
       nullable: true,
-      args: { id: intArg() },
+      args: { id: schema.intArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.findOne({
           where: {
