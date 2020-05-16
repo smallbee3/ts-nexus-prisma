@@ -10,9 +10,9 @@ const prisma = new PrismaClient();
 const pubsub = new PubSub();
 const { JWT_SECRET } = process.env;
 
-schema.addToContext((req) => {
+schema.addToContext((request) => {
   return {
-    req,
+    request,
     prisma,
     pubsub,
     appSecret: JWT_SECRET,
