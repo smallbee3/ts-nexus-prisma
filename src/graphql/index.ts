@@ -1,6 +1,3 @@
-export * from './AuthPayload';
 export * from './Mutation';
-export * from './Post';
+export * from './models';
 export * from './Query';
-export * from './User';
-export * from './Scalar';
